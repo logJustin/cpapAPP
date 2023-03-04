@@ -1,0 +1,48 @@
+/* palette
+#222831
+#393E46
+#D65A31
+#EEEEEE */
+
+/* URl for the bootstrap sidebar
+https://dev.to/codeply/bootstrap-5-sidebar-examples-38pb */
+
+.mainSection {
+    background-color: #EEEEEE;
+}
+
+.mainSectionDark {
+    background-color: #222831;
+}
+
+.sticky-top {
+    background-color: #d65a31;
+}
+
+.chartHeader {
+    text-align: center;
+}
+
+/* this is needed to make the content scrollable on larger screens */
+@media (min-width: 576px) {
+    .h-sm-100 {
+        height: 100%;
+    }
+
+
+}
+
+@media (max-width:576px) {
+    .chartHeader {
+        margin-top: 1.5rem;
+    }
+
+    /* canvas:nth-of-type(2) {
+        margin-bottom: 2rem;
+    } */
+
+
+    #myChartTwo {
+        margin-bottom: 2rem;
+    }
+}
