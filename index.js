@@ -31,7 +31,30 @@ app.get('/', (req, res) => {
         if (err) {
             return console.error(err.message);
         }
-        res.render('home2', { dbData })
+        res.render('home', { dbData })
+    })
+
+})
+app.get('/fourteen', (req, res) => {
+
+    const sql = "SELECT * FROM statTable"
+    db.all(sql, [], (err, dbData) => {
+        if (err) {
+            return console.error(err.message);
+        }
+        res.render('fourteen', { dbData })
+    })
+
+})
+
+app.get('/thirty', (req, res) => {
+
+    const sql = "SELECT * FROM statTable"
+    db.all(sql, [], (err, dbData) => {
+        if (err) {
+            return console.error(err.message);
+        }
+        res.render('thirty', { dbData })
     })
 
 })

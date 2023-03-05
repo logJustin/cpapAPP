@@ -19,8 +19,9 @@ https://dev.to/codeply/bootstrap-5-sidebar-examples-38pb */
     background-color: #d65a31;
 }
 
-.chartHeader {
-    text-align: center;
+#fourteenUsed,
+#myChartThree {
+    max-height: 17rem;
 }
 
 /* this is needed to make the content scrollable on larger screens */
@@ -42,7 +43,7 @@ https://dev.to/codeply/bootstrap-5-sidebar-examples-38pb */
     } */
 
 
-    #myChartTwo {
+    /* #myChartTwo {
         margin-bottom: 2rem;
-    }
+    } */
 }

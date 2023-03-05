@@ -6,19 +6,25 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CPAP Dashboard</title>
+  <link rel="icon" href="/images/lungs-fill.svg">
 
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Gloock&display=swap" rel="stylesheet">
+  <!-- link style sheet -->
   <link rel="stylesheet" href="/css/style.css">
+
+  <!-- link bootstrap in node_modules -->
   <link rel="stylesheet" href="/scripts/css/bootstrap.min.css">
   <script src="/scripts/js/bootstrap.bundle.min.js"></script>
 
+  <!-- link chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- pass db into varable to be used by JS -->
   <script type='text/javascript'>
     var data = <%- JSON.stringify(dbData) %>;
   </script>
-  <link rel="stylesheet" type="text/css" href="/icons/font/bootstrap-icons.css">
 
+  <!-- link bootstrap-icons -->
+  <link rel="stylesheet" type="text/css" href="/icons/font/bootstrap-icons.css">
 </head>
 
 
@@ -32,17 +38,17 @@
           </a>
           <ul class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start" id="menu">
             <li class="nav-item">
-              <a href="#" class="nav-link px-sm-0 px-2 text-light">
-                <i class="fs-5 bi bi-house-door-fill"></i><span class="ms-1 d-none d-sm-inline">Charts</span>
+              <a href="/" class="nav-link px-sm-0 px-2 text-light">
+                <i class="fs-5 bi bi-house-door-fill"></i><span class="ms-1 d-none d-sm-inline">Home</span>
               </a>
             </li>
             <li>
-              <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-sm-0 px-2 text-light">
-                <i class="fs-5 bi-speedometer2"></i><span class="ms-1 d-none d-sm-inline">Dashboard</span> </a>
+              <a href="/fourteen" onclick="window.open(this.href,'_self')" data-bs-toggle=" collapse" class="nav-link px-sm-0 px-2 text-light">
+                <i class="fs-5 bi-calendar-week"></i><span class="ms-1 d-none d-sm-inline">Last 14</span> </a>
             </li>
             <li>
-              <a href="#" class="nav-link px-sm-0 px-2 text-light">
-                <i class="fs-5 bi-table"></i><span class="ms-1 d-none d-sm-inline">Data</span></a>
+              <a href="/thirty" class="nav-link px-sm-0 px-2 text-light">
+                <i class="fs-5 bi-calendar3"></i><span class="ms-1 d-none d-sm-inline">Last 30</span></a>
             </li>
             <!-- <li class="dropdown">
               <a href="#" class="nav-link dropdown-toggle px-sm-0 px-1" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
@@ -60,11 +66,11 @@
             </li> -->
             <li>
               <a href="#" class="nav-link px-sm-0 px-2 text-light">
-                <i class="fs-5 bi-grid"></i><span class="ms-1 d-none d-sm-inline">Placeholder</span></a>
+                <i class="fs-5 bi-database"></i><span class="ms-1 d-none d-sm-inline">Database</span></a>
             </li>
             <li>
               <a href="#" class="nav-link px-sm-0 px-2 text-light">
-                <i class="fs-5 bi-people"></i><span class="ms-1 d-none d-sm-inline">Placeholder</span>
+                <i class="fs-5 bi-wrench"></i><span class="ms-1 d-none d-sm-inline">Parts Lifecycle</span>
               </a>
             </li>
           </ul>

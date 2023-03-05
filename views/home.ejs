@@ -1,101 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('partials/headAndSide') %>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CPAP Dashboard</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Gloock&display=swap" rel="stylesheet">
+<div class="col d-flex flex-column h-sm-100 mainSection mainSectionDark">
+  <main class="row overflow-auto">
+    <div class="col pt-4">
 
-  <link rel="stylesheet" href="/css/style.css">
+      <div class="d-flex flex-wrap flex-row justify-content-around chartGroup">
 
-  <link rel="stylesheet" href="/scripts/css/bootstrap.min.css">
-  <script src="/scripts/js/bootstrap.bundle.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="/icons/font/bootstrap-icons.css">
+        <div class="col-sm-10 col-lg-5">
+          <h1 class="text-light chartHeader text-center">Last 30 Duration</h1> <canvas id="myChart"></canvas>
+        </div>
 
-</head>
+        <div class="col-sm-10 col-lg-5">
+          <h1 class="text-light chartHeader text-center">Last 14 Duration</h1> <canvas id="fourteenDuration"></canvas>
+        </div>
 
-<body>
-  <div class="container container-fluid">
-    <h1>JUSTIN'S CPAP DASHBOARD</h1>
-  </div>
+      </div>
 
-  <div>
-    <div class="container">
-      <canvas id="myChart"></canvas>
+      <div class="d-flex flex-wrap flex-row justify-content-around chartGroup">
+
+        <div class="col-sm-10 col-lg-5">
+          <h1 class="text-light chartHeader text-center">Last 30 Days Missed</h1> <canvas id="myChartThree"></canvas>
+        </div>
+
+        <div class="col-sm-10 col-lg-5">
+          <h1 class="text-light chartHeader text-center">Last 14 Days Missed</h1> <canvas id="fourteenUsed"></canvas>
+        </div>
+
+      </div>
+
+
+      <h3 class="text-light">Vertical Sidebar that switches to Horizontal Navbar</h3>
+      <p class="lead text-light">An example multi-level sidebar with collasible menu items. The menu functions like an "accordion" where only a single menu is be open at a time.</p>
+      <hr />
+
+      <h3 class="text-light">More content...</h3>
+      <p class="text-light">Sriracha biodiesel taxidermy organic post-ironic, Intelligentsia salvia mustache 90's code editing brunch. Butcher polaroid VHS art party, hashtag Brooklyn deep v PBR narwhal sustainable mixtape swag wolf squid tote bag. Tote bag cronut semiotics, raw denim deep v taxidermy messenger bag. Tofu YOLO Etsy, direct trade ethical Odd Future jean shorts paleo. Forage Shoreditch tousled aesthetic irony, street art organic Bushwick artisan cliche semiotics ugh synth chillwave meditation. Shabby chic lomo plaid vinyl chambray Vice. Vice sustainable cardigan, Williamsburg master cleanse hella DIY 90's blog.</p>
+      <p class="text-light">Ethical Kickstarter PBR asymmetrical lo-fi. Dreamcatcher street art Carles, stumptown gluten-free Kickstarter artisan Wes Anderson wolf pug. Godard sustainable you probably haven't heard of them, vegan farm-to-table Williamsburg slow-carb readymade disrupt deep v. Meggings seitan Wes Anderson semiotics, cliche American Apparel whatever. Helvetica cray plaid, vegan brunch Banksy leggings +1 direct trade. Wayfarers codeply PBR selfies. Banh mi McSweeney's Shoreditch selfies, forage fingerstache food truck occupy YOLO Pitchfork fixie iPhone fanny pack art party Portland.</p>
+      <h3 class="text-light">Vertical Sidebar that switches to Horizontal Navbar</h3>
+      <p class="lead text-light">An example multi-level sidebar with collasible menu items. The menu functions like an "accordion" where only a single menu is be open at a time.</p>
+      <hr />
+
+      <h3 class="text-light">More content...</h3>
+      <p class="text-light">Sriracha biodiesel taxidermy organic post-ironic, Intelligentsia salvia mustache 90's code editing brunch. Butcher polaroid VHS art party, hashtag Brooklyn deep v PBR narwhal sustainable mixtape swag wolf squid tote bag. Tote bag cronut semiotics, raw denim deep v taxidermy messenger bag. Tofu YOLO Etsy, direct trade ethical Odd Future jean shorts paleo. Forage Shoreditch tousled aesthetic irony, street art organic Bushwick artisan cliche semiotics ugh synth chillwave meditation. Shabby chic lomo plaid vinyl chambray Vice. Vice sustainable cardigan, Williamsburg master cleanse hella DIY 90's blog.</p>
+      <p class="text-light">Ethical Kickstarter PBR asymmetrical lo-fi. Dreamcatcher street art Carles, stumptown gluten-free Kickstarter artisan Wes Anderson wolf pug. Godard sustainable you probably haven't heard of them, vegan farm-to-table Williamsburg slow-carb readymade disrupt deep v. Meggings seitan Wes Anderson semiotics, cliche American Apparel whatever. Helvetica cray plaid, vegan brunch Banksy leggings +1 direct trade. Wayfarers codeply PBR selfies. Banh mi McSweeney's Shoreditch selfies, forage fingerstache food truck occupy YOLO Pitchfork fixie iPhone fanny pack art party Portland.</p>
+      <h3 class="text-light">Vertical Sidebar that switches to Horizontal Navbar</h3>
+      <p class="lead text-light">An example multi-level sidebar with collasible menu items. The menu functions like an "accordion" where only a single menu is be open at a time.</p>
+      <hr />
+
+      <h3 class="text-light">More content...</h3>
+      <p class="text-light">Sriracha biodiesel taxidermy organic post-ironic, Intelligentsia salvia mustache 90's code editing brunch. Butcher polaroid VHS art party, hashtag Brooklyn deep v PBR narwhal sustainable mixtape swag wolf squid tote bag. Tote bag cronut semiotics, raw denim deep v taxidermy messenger bag. Tofu YOLO Etsy, direct trade ethical Odd Future jean shorts paleo. Forage Shoreditch tousled aesthetic irony, street art organic Bushwick artisan cliche semiotics ugh synth chillwave meditation. Shabby chic lomo plaid vinyl chambray Vice. Vice sustainable cardigan, Williamsburg master cleanse hella DIY 90's blog.</p>
+      <p class="text-light">Ethical Kickstarter PBR asymmetrical lo-fi. Dreamcatcher street art Carles, stumptown gluten-free Kickstarter artisan Wes Anderson wolf pug. Godard sustainable you probably haven't heard of them, vegan farm-to-table Williamsburg slow-carb readymade disrupt deep v. Meggings seitan Wes Anderson semiotics, cliche American Apparel whatever. Helvetica cray plaid, vegan brunch Banksy leggings +1 direct trade. Wayfarers codeply PBR selfies. Banh mi McSweeney's Shoreditch selfies, forage fingerstache food truck occupy YOLO Pitchfork fixie iPhone fanny pack art party Portland.</p>
+      <h3 class="text-light">Vertical Sidebar that switches to Horizontal Navbar</h3>
+      <p class="lead text-light">An example multi-level sidebar with collasible menu items. The menu functions like an "accordion" where only a single menu is be open at a time.</p>
+      <hr />
+
+
     </div>
-  </div>
+  </main>
 
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-
-  <script>
-    let myChart = document.querySelector("#myChart").getContext('2d');
-
-    let hoursUsed = new Chart(myChart, {
-      type: 'bar',
-      data: {
-        labels: ['Boston', 'Worcester', 'Springfield', 'Lowell', 'Cambridge', 'New Bedford'],
-        datasets: [{
-          label: 'Population',
-          data: [
-            617594, 181045, 153060, 106519, 105162, 95072
-          ],
-          // backgroundColor: 'green'
-          backgroundColor: [
-            'green', 'red', 'yellow', 'purple', 'pink', 'blue'
-          ],
-          borderWidth: 1,
-          borderColor: '#777',
-          hoverBorderWidth: 3,
-          hoverBorderColor: '#000'
-        }]
-      },
-      options: {}
-    });
-  </script>
-
-  <div class="dataContainer row">
-    <div class="listContainer col-2">
-      <h2>Hours Used</h2>
-      <ul>
-        <% for (const event of dbData) { %>
-        <li>
-          <%= event.treatDate %>
-          <em>(<%= (event.secUsed / 60 / 60).toFixed(1) %>)</em>
-          <% } %>
-      </ul>
-    </div>
-
-    <div class="listContainer col-2">
-      <h2>AHI Count</h2>
-      <ul>
-        <% for (const event of dbData) { %>
-        <li>
-          <%= event.treatDate %>
-          <em>(<%= event.cntAHI %>)</em>
-        </li>
-        <% } %>
-      </ul>
-    </div>
-
-    <div class="listContainer col-6">
-      <h2>Breath Count</h2>
-      <ul>
-        <% for (const event of dbData) { %>
-        <li>
-          <%= event.treatDate %>
-          <!-- test -->
-          <em>(<%= event.cntBreath %>)</em>
-        </li>
-        <% } %>
-      </ul>
-    </div>
-
-
-</body>
-
-</html>
+  <script src="/js/home.js"></script>
+  <%- include('partials/footer') %>

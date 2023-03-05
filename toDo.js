@@ -1,13 +1,33 @@
-// make a line chart for the hours used over the last week
+// General
+// - done - day & night mode
+// - done - .ejs for header, left side navbar
+// - servicing schedule to change components + update the db
+// - correct usage data table to nuetralize null values
+// - put in widgets for the first row on the page
+//
 
-// evaluate days not used in last 30 days
+// Dashboard
+// - Line chart of usage over a month
+// - UL of Upcomoing services?
+// Days missed in last 30 days
 
-// input usage hours per month in previous 12 months
+// 14
+// - line chart, AHI and hours used
+// - doughnut chart, days not/used
+// - make object of time, AHI, sec Used, then determine average AHI
+// - days under 5
+// - breath count over the month
 
-// day & night mode
+// 30
+// - line chart, AHI and hours used
+// - doughnut chart, days not/used
+// - make object of time, AHI, sec Used, then determine average AHI
+// - days under 5
+// - breath count over the month
 
-// .ejs for header, left side navbar
+// DataBase
+// unsure
 
-// servicing schedule to change components + update the db
-
-// 
+// parts lifecycle
+// UL of upcoming services
+// Calendar integration or something?
