@@ -11,23 +11,39 @@
         <h3 class="text-light" id="endDate"> Board</h3>
       </div>
 
-      <div class="d-flex flex-wrap flex-row justify-content-around chartRow">
-
-        <div class="col-sm-10 col-lg-5 mb-5">
-          <h2 class="text-light text-center">Duration</h2> <canvas id="fourteenDuration"></canvas>
+      <div class="d-flex flex-wrap flex-row justify-content-around initialIconRow">
+        <div class="initialIcons d-flex flex-column justify-content-around col-7 col-lg-3 mb-5 p-4">
+          <h3 class="text-light text-center">Total Duration</h3>
+          <h1 id="hoursUsedIcon" class="text-light text-center align-self-center">100 Hours</h1>
         </div>
 
-        <div class="col-sm-10 col-lg-5 mb-5">
-          <h2 class="text-light text-center">Days Missed</h2> <canvas id="fourteenUsed"></canvas>
+        <div class="initialIcons d-flex flex-column justify-content-around col-7 col-lg-3 mb-5 p-4">
+          <h3 class="text-light text-center">Days Used</h3>
+          <h1 id="daysUsedIcon" class="text-light text-center align-self-center">9 / 14</h1>
+        </div>
+
+        <div class="initialIcons d-flex flex-column justify-content-around col-7 col-lg-3 mb-5 p-4">
+          <h3 class="text-light text-center">Total Breaths</h3>
+          <h1 id="totalBreathsIcon" class="text-light text-center">100,000</h1>
+        </div>
+      </div>
+
+
+      <div class="d-flex flex-wrap flex-row justify-content-around chartRow">
+
+        <div class="col-10 col-lg-5 mb-5">
+          <h2 class="text-light text-center">Duration</h2> <canvas id="durationChart"></canvas>
+        </div>
+
+        <div class="col-10 col-lg-5 mb-5">
+          <h2 class="text-light text-center">Usage</h2> <canvas id="usedChart"></canvas>
         </div>
 
       </div>
 
       <h2 class="text-light text-center">Usage Data</h2>
       <div class="container col-lg-10 table-responsive-lg">
-        <!-- <div class="container col-9 table-responsive-md"> -->
         <table class="table table-hover table-sm table-striped table-bordered mb-5">
-          <!-- <table class="table table-hover table-bordered mb-5"> -->
           <thead class="">
             <tr>
               <th class="text-light text-center" scope="col">Date</th>
@@ -42,7 +58,17 @@
         </table>
       </div>
 
+      <div class="d-flex flex-wrap flex-row justify-content-around chartRow">
 
+        <div class="col-10 col-lg-5 mb-5">
+          <h2 class="text-light text-center">Max Pressure</h2> <canvas id="pressureChart"></canvas>
+        </div>
+
+        <div class="col-10 col-lg-5 mb-5">
+          <h2 class="text-light text-center">Apnea-Hypopnea Index</h2> <canvas id="ahiIndex"></canvas>
+        </div>
+
+      </div>
 
     </div>
   </main>

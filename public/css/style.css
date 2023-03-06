@@ -24,6 +24,16 @@ https://dev.to/codeply/bootstrap-5-sidebar-examples-38pb */
     max-height: 17rem;
 }
 
+.initialIcons {
+    background-color: #EEEEEE40;
+    border-radius: 15px;
+}
+
+.initialIconsDark {
+    background-color: #22283140;
+    border-radius: 15px;
+}
+
 /* this is needed to make the content scrollable on larger screens */
 @media (min-width: 576px) {
     .h-sm-100 {
