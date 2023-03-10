@@ -1,133 +1,216 @@
+// define the duration of this page's caluclations
+let duration = 14;
+// set daysUsed,totalHoursUsed, totalBreaths to zero, so we can add to it later
+let [daysMissed, totalHoursUsed, totalBreaths] = [0, 0, 0];
+// make blank arrays to be used later 
+let [treatmentDates, treatmentTimes, dateRange, objectifiedDateRange, ahiArray, pressureArray] = [[], [], [], [], [], []]
 
-// make a variable for today's date minus 30
-const minus30Date = new Date();
-minus30Date.setDate(minus30Date.getDate() - 30);
 
-// make array of objects within the last 30 days
-let [treatmentDates30, treatmentTimes30] = [[], []]
-// loop through all the data
-for (const event of data) {
-    // convert the treatmentDate to a Date format from a string
-    let eventDate = new Date(event.treatDate)
-    // if it is within 30, push the object to the array
-    if (eventDate > minus30Date) {
-        treatmentDates30.push(event.treatDate)
-        // convert seconds into hours, and round it to nearest tenth
-        treatmentTimes30.push(Math.round(event.secUsed / 60 / 60 * 10) / 10)
+// make a variable for the endDate (yesterday)
+// it's yesterday since you can't log data for tonight
+// tonight hasn't happened yet
+let endDate = new Date(); // today
+endDate.setDate(endDate.getDate() - 1);
+endDate = endDate.toLocaleString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "2-digit"
+});
+
+// render range endDate on webpage
+document.querySelector('#endDate').innerHTML = endDate
+
+//make a variable for the startDate (today minus duration)
+let startDate = new Date(data[0].treatDate).toLocaleString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "2-digit"
+});
+
+// render range startDate on webpage
+document.querySelector('#startDate').innerHTML = startDate
+
+
+// reset endDate after restructing it to LocaleString
+endDate = new Date(); // today
+endDate.setDate(endDate.getDate() - 1);
+startDate = new Date(data[0].treatDate)
+
+
+
+
+// push all days between endDate & startDate into a range
+for (let day = startDate; day <= endDate; day.setDate(day.getDate() + 1)) {
+    dateRange.push(day.toISOString().split('T')[0]);
+}
+
+
+
+
+// takes array of dates and pushes objects to array if their data already exists, creates blank data if it doesnt
+// loop through days in date range
+for (days in dateRange) {
+    let eventDate = dateRange[days]
+    // find the object in the database that corresponds with the eventDate
+    const object = data.find(element => element.treatDate == eventDate);
+
+    switch (true) {
+        // if it exists, push it to the objectifiedDateRange
+        case (object != undefined):
+            object.yearMonth = (object.treatDate).substring(0, 7);
+            objectifiedDateRange.push(object)
+            break;
+        // if it doesn't exist, create a new object, push it to the objectifiedDateRange
+        case (object == undefined):
+            const emptyDataObject = {
+                treatDate: eventDate, secUsed: null, secHumid: null, timePB: null, cntAHI: 0, cntOAI: null, cntCAI: null, cntAI: null, cntHI: null, cntRERA: null, cntSNI: null, cntBreath: null, cntSelfBreath: null, medPress: '~', medIPAP: null, medEPAP: null, medLEAK: null, medVt: null, medMV: null, medRR: null, medTi: null, medIE: null, p95Press: null, p95IPAP: null, p95EPAP: null, p95LEAK: null, p95Vt: null, p95MV: null, p95RR: null, p95Ti: null, p95IE: null, maxPress: 0, maxIPAP: null, maxEPAP: null, maxLEAK: null, maxVt: null, maxMV: null, maxRR: null, maxTi: null, maxIE: null, maxSPO2: null, minSPO2: null, avgSPO2: null, oxygenIndex: null, actualTimeSPO2: null, maxPR: null, minPR: null, avgPR: null, aveDBP: null, aveSBP: null, hbpCounts: null,
+            };
+            emptyDataObject.yearMonth = (emptyDataObject.treatDate).substring(0, 7);
+            objectifiedDateRange.push(emptyDataObject)
+            break;
     }
 }
 
+
+
+// map unique years and months into a new array
+// const uniqueYearsMonths = [...new Set(objectifiedDateRange.map(element => `${element.year}-${element.month}`))]
+const uniqueYearsMonths = [...new Set(objectifiedDateRange.map(element => `${element.yearMonth}`))]
+
+// map objectifiedDateRange against the UniqueYearsMonths to make an object that has 
+// all objects contained within each month of recorded data
+const result = uniqueYearsMonths
+    .map((x) => objectifiedDateRange.filter((y) => y.yearMonth == x)) // filter by yearMonth
+    .map((x, i) => ({ name: uniqueYearsMonths[i], yearMonth: x.map((y) => y) })); // make new objects 
+
+// add data points of seconds used, how many logged events, and averageHours
+for (yearMonth in result) {
+    let month = result[yearMonth]
+    // create object for total sceonds used in month
+    month.totalSeconds = (month.yearMonth).reduce((total, next) => total + next.secUsed, 0)
+
+    // create object key for amount of nights null
+    const nullNights = (month.yearMonth).filter(obj => obj.secUsed == null);
+    month.missedNights = nullNights.length
+
+    // create object key for amount of nights used 
+    const loggedNights = (month.yearMonth).filter(obj => obj.secUsed != null);
+    month.events = loggedNights.length
+
+    // create object key for average hours
+    month.averageHours = (month.totalSeconds / 60 / 60) / month.events
+    month.averageHours = Math.round(month.averageHours * 10) / 10
+    if (isNaN(month.averageHours)) { month.averageHours = 0 }
+
+    // creat object key for AHI per hour
+    month.AHIcount = (month.yearMonth).reduce((total, next) => total + next.cntAHI, 0)
+    month.AHIcount = Math.round((month.AHIcount / month.events / month.averageHours) * 10) / 10
+    if (isNaN(month.AHIcount)) { month.AHIcount = 0 }
+
+    // create object for average of max pressure
+    month.pressure = (month.yearMonth).reduce((total, next) => total + next.maxPress, 0)
+    month.pressure = Math.round((month.pressure / month.events) * 10) / 10
+    if (isNaN(month.pressure)) { month.pressure = 0 }
+}
+console.log(result)
+
 // build out the charts
-let myChart = document.querySelector("#myChart").getContext('2d');
-let hoursUsed30 = new Chart(myChart, {
+let durationChart = document.querySelector("#myChartInitial").getContext('2d');
+let hoursUsed = new Chart(durationChart, {
     type: 'bar',
     data: {
-        labels: treatmentDates30,
+        labels: result.map(e => e.name),
         datasets: [{
-            label: 'Treatment Hours',
-            data: treatmentTimes30,
-            backgroundColor: '#d65a31',
-            borderColor: '#777',
+            label: 'Average Hours',
+            data: result.map(e => e.averageHours),
+            fill: true,
             borderWidth: 1,
-            hoverBorderColor: '#000',
-            // hoverBorderWidth: 3,
-        }],
+            // backgroundColor: '#d65a31'
+        },
+        {
+            label: 'Nights Used',
+            data: result.map(e => e.events),
+            fill: false,
+            borderWidth: 1,
+            type: 'line',
+            // backgroundColor: '#EEE',
+            // borderColor: '#EEE',
+        }, {
+            label: 'Nights Missed',
+            data: result.map(e => e.missedNights),
+            fill: false,
+            borderWidth: 1,
+            type: 'line',
+            // backgroundColor: '#ede580',
+            // borderColor: '#ede580',
+        }
+        ]
     },
-    options: {}
+    options: { pointStyle: true }
 });
 
-
-let daysUsed30 = 0;
-for (const event of data) {
-    // convert the treatmentDate to a Date format from a string
-    let eventDate = new Date(event.treatDate)
-    // if it is within 30, push the object to the array
-    if (eventDate > minus30Date) {
-        daysUsed30++
-    }
-}
-let daysUsedData30 = [daysUsed30, 30 - daysUsed30]
-
-let myChartThree = document.querySelector("#myChartThree").getContext('2d');
-let daysUsed30Chart = new Chart(myChartThree, {
-    type: 'doughnut',
+let polarChart = document.querySelector("#polarchart").getContext('2d');
+let polar = new Chart(polarChart, {
+    type: 'radar',
     data: {
-        labels: ['Used', 'Unused'],
-        datasets: [{
-            label: 'Days',
-            data: daysUsedData30,
-            backgroundColor: ['#d65a31', '#d65a3180'],
-            hoverOffset: 4,
-            borderColor: '#777'
-        }]
+        labels: result.map(e => e.name),
+        datasets: [
+            {
+                label: 'Average Hours',
+                data: result.map(e => e.averageHours),
+                fill: true,
+                borderWidth: 1,
+            },
+            {
+                label: 'Nights Used',
+                data: result.map(e => e.events),
+                // fill: false,
+                borderWidth: 1,
+                // type: 'line'
+            }
+        ]
     },
     options: {}
 });
 
-
-
-// make a variable for today's date minus 14
-const minus14Date = new Date();
-minus14Date.setDate(minus14Date.getDate() - 14);
-
-// make array of objects within the last 30 days
-let [treatmentDates14, treatmentTimes14] = [[], []]
-
-
-for (const event of data) {
-    // convert the treatmentDate to a Date format from a string
-    let eventDate = new Date(event.treatDate)
-    // if it is within 30, push the object to the array
-    if (eventDate > minus14Date) {
-        treatmentDates14.push(event.treatDate)
-        // convert seconds into hours, and round it to nearest tenth
-        treatmentTimes14.push(Math.round(event.secUsed / 60 / 60 * 10) / 10)
-    }
-}
-
-
-
-// build out the charts
-let fourteenDuration = document.querySelector("#fourteenDuration").getContext('2d');
-let hoursUsed14 = new Chart(fourteenDuration, {
+let AHIchart = document.querySelector("#AHIchart").getContext('2d');
+let AHI = new Chart(AHIchart, {
     type: 'line',
     data: {
-        labels: treatmentDates14,
+        labels: result.map(e => e.name),
         datasets: [{
-            label: 'Treatment Hours',
-            data: treatmentTimes14,
+            label: 'Events an Hour',
+            data: result.map(e => e.AHIcount),
             backgroundColor: '#d65a31',
             hoverOffset: 4,
             borderColor: '#777',
+            borderWidth: 1,
+            fill: true
         }]
     },
-    options: {}
+    // options: { indexAxis: 'y' }
 });
 
-
-let daysUsed14 = 0;
-for (const event of data) {
-    // convert the treatmentDate to a Date format from a string
-    let eventDate = new Date(event.treatDate)
-    // if it is within 14, push the object to the array
-    if (eventDate > minus14Date) {
-        daysUsed14++
-    }
-}
-let daysUsedData14 = [daysUsed14, 14 - daysUsed14]
-
-let fourteenUsed = document.querySelector("#fourteenUsed").getContext('2d');
-let daysUsed14Chart = new Chart(fourteenUsed, {
-    type: 'pie',
+let pressureChart = document.querySelector("#pressureChart").getContext('2d');
+let pressureCracks = new Chart(pressureChart, {
+    type: 'line',
     data: {
-        labels: ['Used', 'Missed'],
+        labels: result.map(e => e.name),
         datasets: [{
-            label: 'Days',
-            data: daysUsedData14,
-            backgroundColor: ['#d65a31', '#d65a3180'],
+            label: 'Events an Hour',
+            data: result.map(e => e.pressure),
+            backgroundColor: '#d65a31',
             hoverOffset: 4,
-            borderColor: '#777'
+            borderColor: '#777',
+            borderWidth: 1,
+            fill: true
         }]
     },
-    options: {}
+    options: {
+        // indexAxis: 'y',
+        parsing: {
+            // xAxisKey: 'treatementDate',
+            // yAxisKey: 'AHI',
+        }
+    }
 });
