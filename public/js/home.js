@@ -63,7 +63,7 @@ for (days in dateRange) {
         // if it doesn't exist, create a new object, push it to the objectifiedDateRange
         case (object == undefined):
             const emptyDataObject = {
-                treatDate: eventDate, secUsed: null, secHumid: null, timePB: null, cntAHI: 0, cntOAI: null, cntCAI: null, cntAI: null, cntHI: null, cntRERA: null, cntSNI: null, cntBreath: null, cntSelfBreath: null, medPress: '~', medIPAP: null, medEPAP: null, medLEAK: null, medVt: null, medMV: null, medRR: null, medTi: null, medIE: null, p95Press: null, p95IPAP: null, p95EPAP: null, p95LEAK: null, p95Vt: null, p95MV: null, p95RR: null, p95Ti: null, p95IE: null, maxPress: 0, maxIPAP: null, maxEPAP: null, maxLEAK: null, maxVt: null, maxMV: null, maxRR: null, maxTi: null, maxIE: null, maxSPO2: null, minSPO2: null, avgSPO2: null, oxygenIndex: null, actualTimeSPO2: null, maxPR: null, minPR: null, avgPR: null, aveDBP: null, aveSBP: null, hbpCounts: null,
+                treatDate: eventDate, secUsed: null, secHumid: null, timePB: null, cntAHI: 0, cntOAI: null, cntCAI: null, cntAI: null, cntHI: null, cntRERA: null, cntSNI: null, cntBreath: null, cntSelfBreath: null, medPress: null, medIPAP: null, medEPAP: null, medLEAK: null, medVt: null, medMV: null, medRR: null, medTi: null, medIE: null, p95Press: null, p95IPAP: null, p95EPAP: null, p95LEAK: null, p95Vt: null, p95MV: null, p95RR: null, p95Ti: null, p95IE: null, maxPress: 0, maxIPAP: null, maxEPAP: null, maxLEAK: null, maxVt: null, maxMV: null, maxRR: null, maxTi: null, maxIE: null, maxSPO2: null, minSPO2: null, avgSPO2: null, oxygenIndex: null, actualTimeSPO2: null, maxPR: null, minPR: null, avgPR: null, aveDBP: null, aveSBP: null, hbpCounts: null,
             };
             emptyDataObject.yearMonth = (emptyDataObject.treatDate).substring(0, 7);
             objectifiedDateRange.push(emptyDataObject)
@@ -108,9 +108,19 @@ for (yearMonth in result) {
     if (isNaN(month.AHIcount)) { month.AHIcount = 0 }
 
     // create object for average of max pressure
-    month.pressure = (month.yearMonth).reduce((total, next) => total + next.maxPress, 0)
-    month.pressure = Math.round((month.pressure / month.events) * 10) / 10
-    if (isNaN(month.pressure)) { month.pressure = 0 }
+    month.maxPressure = (month.yearMonth).reduce((total, next) => total + next.maxPress, 0)
+    month.maxPressure = Math.round((month.maxPressure / month.events) * 10) / 10
+    if (isNaN(month.maxPressure)) { month.maxPressure = 0 }
+    // create object for average of max pressure
+
+    month.medPressure = (month.yearMonth).reduce((total, next) => total + next.medPress, 0)
+    month.medPressure = Math.round((month.medPressure / month.events) * 10) / 10
+    if (isNaN(month.medPressure)) { month.medPressure = 0 }
+    // create object for average of max pressure
+
+    month.p95Pressure = (month.yearMonth).reduce((total, next) => total + next.p95Press, 0)
+    month.p95Pressure = Math.round((month.p95Pressure / month.events) * 10) / 10
+    if (isNaN(month.p95Pressure)) { month.p95Pressure = 0 }
 }
 console.log(result)
 
@@ -181,9 +191,9 @@ let AHI = new Chart(AHIchart, {
         datasets: [{
             label: 'Events an Hour',
             data: result.map(e => e.AHIcount),
-            backgroundColor: '#d65a31',
+            backgroundColor: '#d65a3180',
             hoverOffset: 4,
-            borderColor: '#777',
+            borderColor: '#d65a31',
             borderWidth: 1,
             fill: true
         }]
@@ -193,15 +203,31 @@ let AHI = new Chart(AHIchart, {
 
 let pressureChart = document.querySelector("#pressureChart").getContext('2d');
 let pressureCracks = new Chart(pressureChart, {
-    type: 'line',
+    type: 'bar',
     data: {
         labels: result.map(e => e.name),
         datasets: [{
-            label: 'Events an Hour',
-            data: result.map(e => e.pressure),
-            backgroundColor: '#d65a31',
+            label: 'Median',
+            data: result.map(e => e.medPressure),
+            backgroundColor: '#ff638480',
             hoverOffset: 4,
-            borderColor: '#777',
+            borderColor: '#ff6384',
+            borderWidth: 1,
+            fill: true
+        }, {
+            label: '95th Percentile',
+            data: result.map(e => e.p95Pressure),
+            backgroundColor: '#d65a3180',
+            hoverOffset: 4,
+            borderColor: '#d65a31',
+            borderWidth: 1,
+            fill: true
+        }, {
+            label: 'Maximum',
+            data: result.map(e => e.maxPressure),
+            backgroundColor: '#36A2EB80',
+            hoverOffset: 4,
+            borderColor: '#36A2EB',
             borderWidth: 1,
             fill: true
         }]
