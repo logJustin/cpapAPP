@@ -59,6 +59,17 @@ app.get('/thirty', (req, res) => {
 
 })
 
+app.get('/database', (req, res) => {
+
+    const sql = "SELECT * FROM statTable"
+    db.all(sql, [], (err, dbData) => {
+        if (err) {
+            return console.error(err.message);
+        }
+        res.render('database', { dbData })
+    })
+
+})
 
 app.listen(3000, () => {
     console.log('On port 3000')

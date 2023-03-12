@@ -1,9 +1,5 @@
-// define the duration of this page's caluclations
-let duration = 14;
-// set daysUsed,totalHoursUsed, totalBreaths to zero, so we can add to it later
-let [daysMissed, totalHoursUsed, totalBreaths] = [0, 0, 0];
 // make blank arrays to be used later 
-let [treatmentDates, treatmentTimes, dateRange, objectifiedDateRange, ahiArray, pressureArray] = [[], [], [], [], [], []]
+let [dateRange, objectifiedDateRange] = [[], []]
 
 
 // make a variable for the endDate (yesterday)
@@ -89,13 +85,20 @@ for (yearMonth in result) {
     // create object for total sceonds used in month
     month.totalSeconds = (month.yearMonth).reduce((total, next) => total + next.secUsed, 0)
 
+    const overFourNights = (month.yearMonth).filter(obj => Number(obj.secUsed) > 14400);
+    month.overFour = overFourNights.length
+
     // create object key for amount of nights null
-    const nullNights = (month.yearMonth).filter(obj => obj.secUsed == null);
+    const nullNights = (month.yearMonth).filter(obj => obj.secUsed == null)
+    // console.log(month.name, nullNights)
     month.missedNights = nullNights.length
 
     // create object key for amount of nights used 
     const loggedNights = (month.yearMonth).filter(obj => obj.secUsed != null);
     month.events = loggedNights.length
+
+    // create object key for amount of breats
+    month.breathCount = (month.yearMonth).reduce((total, next) => total + next.cntBreath, 0)
 
     // create object key for average hours
     month.averageHours = (month.totalSeconds / 60 / 60) / month.events
@@ -116,13 +119,34 @@ for (yearMonth in result) {
     month.medPressure = (month.yearMonth).reduce((total, next) => total + next.medPress, 0)
     month.medPressure = Math.round((month.medPressure / month.events) * 10) / 10
     if (isNaN(month.medPressure)) { month.medPressure = 0 }
-    // create object for average of max pressure
 
+    // create object for average of max pressure
     month.p95Pressure = (month.yearMonth).reduce((total, next) => total + next.p95Press, 0)
     month.p95Pressure = Math.round((month.p95Pressure / month.events) * 10) / 10
     if (isNaN(month.p95Pressure)) { month.p95Pressure = 0 }
+
 }
-console.log(result)
+
+
+
+
+// generate an object for the total duration, breaths, and days missed
+let annualData = {}
+annualData.hours = result.reduce((accumulator, currentValue) => accumulator + currentValue.totalSeconds, 0);
+annualData.hours = Math.round(annualData.hours / 60 / 60 * 10) / 10
+annualData.hours = Number(annualData.hours).toLocaleString()
+
+annualData.breaths = result.reduce((accumulator, currentValue) => accumulator + currentValue.breathCount, 0);
+annualData.breaths = Number(annualData.breaths).toLocaleString()
+
+annualData.loggedDays = result.reduce((accumulator, currentValue) => accumulator + currentValue.events, 0);
+annualData.missedDays = result.reduce((accumulator, currentValue) => accumulator + currentValue.missedNights, 0);
+annualData.totalDays = (annualData.loggedDays + annualData.missedDays)
+
+annualData.overFourDays = result.reduce((accumulator, currentValue) => accumulator + currentValue.overFour, 0);
+annualData.underFourDays = (annualData.totalDays - annualData.overFourDays)
+
+
 
 // build out the charts
 let durationChart = document.querySelector("#myChartInitial").getContext('2d');
@@ -135,7 +159,9 @@ let hoursUsed = new Chart(durationChart, {
             data: result.map(e => e.averageHours),
             fill: true,
             borderWidth: 1,
-            // backgroundColor: '#d65a31'
+            backgroundColor: '#d65a3180',
+            borderColor: '#d65a31',
+            order: 3
         },
         {
             label: 'Nights Used',
@@ -143,20 +169,22 @@ let hoursUsed = new Chart(durationChart, {
             fill: false,
             borderWidth: 1,
             type: 'line',
-            // backgroundColor: '#EEE',
-            // borderColor: '#EEE',
+            backgroundColor: '#ff638480',
+            borderColor: '#ff6384',
+            order: 2
         }, {
             label: 'Nights Missed',
             data: result.map(e => e.missedNights),
             fill: false,
             borderWidth: 1,
             type: 'line',
-            // backgroundColor: '#ede580',
-            // borderColor: '#ede580',
+            backgroundColor: '#36A2EB80',
+            borderColor: '#36A2EB',
+            order: 1
         }
         ]
     },
-    options: { pointStyle: true }
+    options: { pointStyle: true, responsive: true }
 });
 
 let polarChart = document.querySelector("#polarchart").getContext('2d');
@@ -166,21 +194,91 @@ let polar = new Chart(polarChart, {
         labels: result.map(e => e.name),
         datasets: [
             {
+
                 label: 'Average Hours',
                 data: result.map(e => e.averageHours),
                 fill: true,
                 borderWidth: 1,
+                backgroundColor: '#d65a3180',
+                borderColor: '#d65a31',
+                // order: 1
             },
             {
                 label: 'Nights Used',
                 data: result.map(e => e.events),
-                // fill: false,
                 borderWidth: 1,
-                // type: 'line'
+                backgroundColor: '#36A2EB80',
+                borderColor: '#36A2EB',
+                // order: 2
             }
         ]
     },
-    options: {}
+    options: { responsive: true }
+});
+
+let overFour = document.querySelector("#overFour").getContext('2d');
+let fourDoughnut = new Chart(overFour, {
+    type: 'doughnut',
+    data: {
+        labels: ['4+', '4-'],
+        datasets: [{
+            data: [annualData.overFourDays, annualData.underFourDays],
+            borderWidth: 1,
+            label: 'Nights',
+            backgroundColor: ['#d65a3180', '#36A2EB80'],
+            borderColor: ['#d65a31', '#36A2EB'],
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: { legend: { reverse: true } }
+    }
+});
+
+let pressureChart = document.querySelector("#pressureChart").getContext('2d');
+let pressureCracks = new Chart(pressureChart, {
+    type: 'bar',
+    data: {
+        labels: result.map(e => e.name),
+        datasets: [{
+            label: 'Median',
+            data: result.map(e => e.medPressure),
+            backgroundColor: '#d65a3180',
+            borderColor: '#d65a31',
+            hoverOffset: 4,
+            borderWidth: 1,
+            fill: true
+        }, {
+            label: '95th Percentile',
+            data: result.map(e => e.p95Pressure),
+            backgroundColor: '#ff638480',
+            borderColor: '#ff6384',
+            hoverOffset: 4,
+            borderWidth: 1,
+            fill: true
+        }, {
+            label: 'Maximum',
+            data: result.map(e => e.maxPressure),
+            backgroundColor: '#36A2EB80',
+            borderColor: '#36A2EB',
+            hoverOffset: 4,
+            borderWidth: 1,
+            fill: true
+        }]
+    },
+    options: {
+        indexAxis: 'y',
+        responsive: true,
+        scales:
+        {
+            x: {
+                stacked: true
+            },
+            y: {
+                stacked: true
+            }
+        }
+    }
 });
 
 let AHIchart = document.querySelector("#AHIchart").getContext('2d');
@@ -198,45 +296,14 @@ let AHI = new Chart(AHIchart, {
             fill: true
         }]
     },
-    // options: { indexAxis: 'y' }
+    options: { responsive: true }
 });
 
-let pressureChart = document.querySelector("#pressureChart").getContext('2d');
-let pressureCracks = new Chart(pressureChart, {
-    type: 'bar',
-    data: {
-        labels: result.map(e => e.name),
-        datasets: [{
-            label: 'Median',
-            data: result.map(e => e.medPressure),
-            backgroundColor: '#ff638480',
-            hoverOffset: 4,
-            borderColor: '#ff6384',
-            borderWidth: 1,
-            fill: true
-        }, {
-            label: '95th Percentile',
-            data: result.map(e => e.p95Pressure),
-            backgroundColor: '#d65a3180',
-            hoverOffset: 4,
-            borderColor: '#d65a31',
-            borderWidth: 1,
-            fill: true
-        }, {
-            label: 'Maximum',
-            data: result.map(e => e.maxPressure),
-            backgroundColor: '#36A2EB80',
-            hoverOffset: 4,
-            borderColor: '#36A2EB',
-            borderWidth: 1,
-            fill: true
-        }]
-    },
-    options: {
-        // indexAxis: 'y',
-        parsing: {
-            // xAxisKey: 'treatementDate',
-            // yAxisKey: 'AHI',
-        }
-    }
-});
+
+
+
+document.querySelector("#hoursUsedIcon").innerHTML = `${annualData.hours} Hours`
+// udpate daysUsedIcon
+document.querySelector("#daysUsedIcon").innerHTML = `${annualData.loggedDays} / ${annualData.totalDays}`
+// update totalBreaths
+document.querySelector("#totalBreathsIcon").innerHTML = annualData.breaths
