@@ -79,7 +79,6 @@ const createTable = (data) => {
         c5.innerHTML = data[day].medPress
         if (c5.innerHTML == '') { c5.innerHTML = '~' }
 
-        console.log(row)
     }
 }
 

@@ -17,6 +17,8 @@ const db = new sqlite3.Database('C:/Users/reyno/Documents/iMatrix/PATIENT/000001
 
 app.use('/scripts', express.static(__dirname + '/node_modules/bootstrap/dist'));
 app.use('/icons', express.static(__dirname + '/node_modules/bootstrap-icons'));
+app.use('/bsTable', express.static(__dirname + '/node_modules/bootstrap-table'));
+app.use('/jquery', express.static(__dirname + '/node_modules/jquery'));
 app.use(express.static(path.join(__dirname, '/public')))
 
 app.set('views', path.join(__dirname, 'views'))

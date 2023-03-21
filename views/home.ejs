@@ -12,24 +12,26 @@
       <!-- large chart -->
       <div class="d-flex flex-no-wrap flex-col justify-content-around chartGroup">
 
-        <div class=" col-sm-10">
-          <h1 class="text-light chartHeader text-center">Dashboard All Chart</h1> <canvas id="myChartInitial"></canvas>
+        <div class="col-sm-10">
+          <h1 class="text-light chartHeader text-center"></h1> <canvas id="myChartInitial"></canvas>
         </div>
 
       </div>
 
       <!-- thankyou speech -->
-      <h3 class="text-light mt-5">This is your CPAP Dashboard</h3>
-      <p class="lead text-light">Continuous Positive Airway Pressure, or CPAP, machines are an essential therapy for those diagnosed with Sleep Apnea.</p>
-      <p class="lead text-light">The data is just as valuable as the treatment the machine provides, but the information is safeguarded through a security wall of medical providers and medical supply stores. This resource is designed to provide comprehensive and real-time access to your medical data.</p>
-      <hr />
+      <div class="container col-sm-10">
+        <h3 class="text-light mt-5 mb-0">This is your CPAP Dashboard</h3>
+        <p class="lead text-light">Continuous Positive Airway Pressure, or CPAP, machines are an essential therapy for those diagnosed with Sleep Apnea.</p>
+        <p class="lead text-light">The data is just as valuable as the treatment the machine provides, but the information is safeguarded through a security wall of medical providers and medical supply stores. This resource is designed to provide comprehensive and real-time access to your medical data.</p>
+        <hr />
 
-      <h4 class="text-light mt-5">The 14 and 30 Day View</h4>
-      <p class="text-light">View charted and tabled information for your machine's usage: duration of hours used, amount of days missed, maximum pressure of therapy, and apnea-hypopnea index (AHI).</p>
-      <h4 class="text-light">Database</h4>
-      <p class="text-light">The database provides a chart layout of all treatment data, similiarly to how it is displayed in the 14 and 30 Day page.</p>
-      <h4 class="text-light">Parts Lifecycle</h4>
-      <p class="text-light">Add, view, update, and remove maintenance events across all interchangeable parts for your CPAP machine.</p>
+        <h4 class="text-light mt-5 mb-1">The 14 and 30 Day View</h4>
+        <p class="text-light">View charted and tabled information for your machine's usage: duration of hours used, amount of days missed, maximum pressure of therapy, and apnea-hypopnea index (AHI).</p>
+        <h4 class="text-light mt-4 mb-1">Database</h4>
+        <p class="text-light">The database provides a chart layout of all treatment data, similiarly to how it is displayed in the 14 and 30 Day page.</p>
+        <h4 class="text-light mt-4 mb-1">Parts Lifecycle</h4>
+        <p class="text-light">Add, view, update, and remove maintenance events across all interchangeable parts for your CPAP machine.</p>
+      </div>
       <hr />
 
       <!-- flex icons -->
@@ -53,23 +55,23 @@
       <!-- next set of charts -->
       <div class="d-flex flex-wrap flex-row justify-content-around chartGroup">
 
-        <div class="col-sm-10 col-lg-5">
+        <div class="col-sm-10 col-lg-5 mt-5 w-15 h-15">
           <h1 class="text-light chartHeader text-center">Fun Polar Chart</h1> <canvas id="polarchart"></canvas>
         </div>
 
-        <div class="col-sm-10 col-lg-5">
-          <h1 class="text-light chartHeader text-center">Over/Under 4 Hours</h1> <canvas id="overFour"></canvas>
+        <div class="col-sm-10 col-lg-5 mt-5 w-15 h-15">
+          <h1 class="text-light chartHeader text-center">Usage</h1> <canvas id="overFour"></canvas>
         </div>
 
       </div>
 
       <div class="d-flex flex-wrap flex-row justify-content-around chartGroup">
 
-        <div class="col-sm-10 col-lg-5">
+        <div class="col-sm-10 col-lg-5 mt-5">
           <h1 class="text-light chartHeader text-center">Pressure</h1> <canvas id="pressureChart"></canvas>
         </div>
 
-        <div class="col-sm-10 col-lg-5">
+        <div class="col-sm-10 col-lg-5 mt-5">
           <h1 class="text-light chartHeader text-center">AHIs</h1> <canvas id="AHIchart"></canvas>
         </div>
 

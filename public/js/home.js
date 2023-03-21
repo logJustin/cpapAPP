@@ -220,13 +220,13 @@ let overFour = document.querySelector("#overFour").getContext('2d');
 let fourDoughnut = new Chart(overFour, {
     type: 'doughnut',
     data: {
-        labels: ['4+', '4-'],
+        labels: ['Over Four Hours', 'Under Four Hours', 'Nights Missed'],
         datasets: [{
-            data: [annualData.overFourDays, annualData.underFourDays],
+            data: [annualData.overFourDays, annualData.underFourDays, annualData.missedDays],
             borderWidth: 1,
             label: 'Nights',
-            backgroundColor: ['#d65a3180', '#36A2EB80'],
-            borderColor: ['#d65a31', '#36A2EB'],
+            backgroundColor: ['#d65a3180', '#36A2EB80', '#ff638480'],
+            borderColor: ['#d65a31', '#36A2EB', '#ff6384'],
         }]
     },
     options: {

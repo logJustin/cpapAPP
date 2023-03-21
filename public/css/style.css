@@ -7,6 +7,7 @@
 /* URl for the bootstrap sidebar
 https://dev.to/codeply/bootstrap-5-sidebar-examples-38pb */
 
+
 .mainSection {
     background-color: #EEEEEE;
 }
@@ -17,7 +18,9 @@ https://dev.to/codeply/bootstrap-5-sidebar-examples-38pb */
 
 .sticky-top {
     background-color: #d65a31;
+
 }
+
 
 #fourteenUsed,
 #myChartThree {
@@ -34,6 +37,13 @@ https://dev.to/codeply/bootstrap-5-sidebar-examples-38pb */
     border-radius: 15px;
 }
 
+table {
+    display: table;
+    height: 60vh;
+    width: 100%;
+    overflow-y: scroll;
+}
+
 /* this is needed to make the content scrollable on larger screens */
 @media (min-width: 576px) {
     .h-sm-100 {
@@ -47,13 +57,4 @@ https://dev.to/codeply/bootstrap-5-sidebar-examples-38pb */
     .chartHeader {
         margin-top: 1.5rem;
     }
-
-    /* canvas:nth-of-type(2) {
-        margin-bottom: 2rem;
-    } */
-
-
-    /* #myChartTwo {
-        margin-bottom: 2rem;
-    } */
 }
