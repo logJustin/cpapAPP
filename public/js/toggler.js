@@ -6,6 +6,7 @@ toggle.addEventListener('change', function () {
     if (toggle.checked) {
         let lightIcons = document.querySelectorAll('.initialIcons')
         let lightText = document.querySelectorAll('.text-light')
+        let lightBtn = document.querySelectorAll('.btn-light')
         mainSection.classList.toggle('mainSectionDark');
 
         [...lightText].forEach(x => {
@@ -16,10 +17,15 @@ toggle.addEventListener('change', function () {
             x.classList.add('initialIconsDark');
             x.classList.remove('initialIcons');
         });
+        [...lightBtn].forEach(x => {
+            x.classList.add('btn-dark');
+            x.classList.remove('btn-light');
+        });
 
     } else {
         let darkText = document.querySelectorAll('.text-dark')
         let darkIcons = document.querySelectorAll('.initialIconsDark')
+        let darkBtn = document.querySelectorAll('.btn-dark')
         mainSection.classList.toggle('mainSectionDark');
 
         [...darkText].forEach(x => {
@@ -29,6 +35,10 @@ toggle.addEventListener('change', function () {
         [...darkIcons].forEach(x => {
             x.classList.add('initialIcons');
             x.classList.remove('initialIconsDark');
+        });
+        [...darkBtn].forEach(x => {
+            x.classList.add('btn-light');
+            x.classList.remove('btn-dark');
         });
 
     }

@@ -70,7 +70,6 @@ for (days in dateRange) {
 
 
 // map unique years and months into a new array
-// const uniqueYearsMonths = [...new Set(objectifiedDateRange.map(element => `${element.year}-${element.month}`))]
 const uniqueYearsMonths = [...new Set(objectifiedDateRange.map(element => `${element.yearMonth}`))]
 
 // map objectifiedDateRange against the UniqueYearsMonths to make an object that has 

@@ -1,0 +1,32 @@
+<%- include('partials/headAndSide') %>
+
+
+<div class="col d-flex flex-column h-sm-100 mainSection mainSectionDark">
+  <main class="row overflow-auto">
+    <div class="col pt-4">
+      <h1 class="text-light text-center pageHeader">Parts</h1>
+
+      <div class="container col-lg-10 mt-5 table-responsive-lg">
+        <table id="table" class="table table-sm table-striped table-bordered my-table">
+          <thead class="sticky-top">
+            <tr>
+              <th data-sortable="true" class="text-light text-center" scope="col">Component</th>
+              <th data-sortable="true" class="text-light text-center" scope="col">Last Changed</th>
+              <th data-sortable="true" class="text-light text-center" scope="col">Frequency</th>
+              <th data-sortable="true" class="text-light text-center" scope="col">Next Due</th>
+              <th data-sortable="true" class="text-light text-center" scope="col">Update</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+</div>
+</main>
+
+
+<script src="/js/parts.js"></script>
+<%- include('partials/footer') %>
