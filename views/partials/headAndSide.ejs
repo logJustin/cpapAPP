@@ -2,41 +2,30 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CPAP Dashboard</title>
-  <link rel="icon" href="/images/lungs-fill.svg">
 
-  <!-- link bootstrap in node_modules -->
-  <link rel="stylesheet" href="/scripts/css/bootstrap.min.css">
-  <script src="/scripts/js/bootstrap.bundle.min.js"></script>
+  <!-- Stylesheets -->
+  <link rel="icon" href="/images/lungs-fill.svg" />
+  <link rel="stylesheet" href="/scripts/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/bsTable/dist/bootstrap-table.min.css" />
+  <link rel="stylesheet" href="/bsTable/dist/extensions/sticky-header/bootstrap-table-sticky-header.min.css" />
+  <link rel="stylesheet" href="/icons/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="/css/style.css" />
 
-  <!-- link chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-  <!-- pass db into varable to be used by JS -->
-  <script type='text/javascript'>
-    var data = <%- JSON.stringify(dbData) %>;
-  </script>
-
-  <!-- link bootstrap-icons -->
-  <link rel="stylesheet" type="text/css" href="/icons/font/bootstrap-icons.css">
-
-  <!-- linkjquery to use in bootstrap-table -->
+  <!-- Scripts -->
   <script src="/jquery/dist/jquery.js"></script>
-
-  <!-- link bootstrap table -->
-  <link rel="stylesheet" type="text/css" href="/bsTable/dist/bootstrap-table.min.css">
-  <link rel="stylesheet" type="text/css" href="/bsTable/dist/extensions/sticky-header/bootstrap-table-sticky-header.min.css">
+  <script src="/scripts/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="/bsTable/dist/bootstrap-table.min.js"></script>
   <script src="/bsTable/dist/locale/bootstrap-table-en-US.min.js"></script>
   <script src="/bsTable/dist/extensions/sticky-header/bootstrap-table-sticky-header.min.js"></script>
-
-  <!-- link style sheet -->
-  <link rel="stylesheet" href="/css/style.css">
+  <script>
+    var data = <%- JSON.stringify(dbData) %>;
+  </script>
 </head>
-
 
 <body>
   <div class="container-fluid overflow-hidden">
@@ -46,62 +35,42 @@
           <a href="/" class="d-flex align-items-center pb-sm-3 mb-md-0 me-md-auto text-white text-decoration-none">
             <span class="fs-5 text-light">CPAP<span class="d-none d-sm-inline text-light"> Dashboard</span></span>
           </a>
+
           <ul class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start" id="menu">
             <li class="nav-item">
               <a href="/" class="nav-link px-sm-0 px-2 text-light">
-                <i class="fs-5 bi bi-house-door-fill"></i><span class="ms-1 d-none d-sm-inline">Home</span>
+                <i class="fs-5 bi bi-house-door-fill"></i>
+                <span class="ms-2 d-none d-sm-inline">Home</span>
               </a>
             </li>
             <li>
-              <a href="/fourteen" onclick="window.open(this.href,'_self')" data-bs-toggle=" collapse" class="nav-link px-sm-0 px-2 text-light">
-                <i class="fs-5 bi-calendar-week"></i><span class="ms-1 d-none d-sm-inline">Last 14</span> </a>
+              <a href="/fourteen" onclick="window.open(this.href,'_self')" data-bs-toggle="collapse" class="nav-link px-sm-0 px-2 text-light">
+                <i class="fs-5 bi-calendar-week"></i>
+                <span class="ms-2 d-none d-sm-inline">Last 14</span>
+              </a>
             </li>
             <li>
               <a href="/thirty" class="nav-link px-sm-0 px-2 text-light">
-                <i class="fs-5 bi-calendar3"></i><span class="ms-1 d-none d-sm-inline">Last 30</span></a>
-            </li>
-            <!-- <li class="dropdown">
-              <a href="#" class="nav-link dropdown-toggle px-sm-0 px-1" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fs-5 bi-bootstrap"></i><span class="ms-1 d-none d-sm-inline">Bootstrap</span>
+                <i class="fs-5 bi-calendar3"></i>
+                <span class="ms-2 d-none d-sm-inline">Last 30</span>
               </a>
-              <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdown">
-                <li><a class="dropdown-item" href="#">New project...</a></li>
-                <li><a class="dropdown-item" href="#">Settings</a></li>
-                <li><a class="dropdown-item" href="#">Profile</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="#">Sign out</a></li>
-              </ul>
-            </li> -->
+            </li>
             <li>
               <a href="/database" class="nav-link px-sm-0 px-2 text-light">
-                <i class="fs-5 bi-database"></i><span class="ms-1 d-none d-sm-inline">Database</span></a>
+                <i class="fs-5 bi-database"></i>
+                <span class="ms-2 d-none d-sm-inline">Database</span>
+              </a>
             </li>
             <li>
               <a href="/parts" class="nav-link px-sm-0 px-2 text-light">
-                <i class="fs-5 bi-wrench"></i><span class="ms-1 d-none d-sm-inline">Parts Lifecycle</span>
+                <i class="fs-5 bi-wrench"></i>
+                <span class="ms-2 d-none d-sm-inline">Parts Lifecycle</span>
               </a>
             </li>
           </ul>
-          <!-- <div class="dropdown py-sm-4 mt-sm-auto ms-auto ms-sm-0 flex-shrink-1">
-            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="https://github.com/mdo.png" alt="hugenerd" width="28" height="28" class="rounded-circle">
-              <span class="d-none d-sm-inline mx-1">Joe</span>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-              <li><a class="dropdown-item" href="#">New project...</a></li>
-              <li><a class="dropdown-item" href="#">Settings</a></li>
-              <li><a class="dropdown-item" href="#">Profile</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#">Sign out</a></li>
-            </ul>
-          </div> -->
 
-          <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+          <div class=" mb-lg-3 form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
             <label class="form-check-label text-light" for="flexSwitchCheckDefault">Light</label>
           </div>
         </div>

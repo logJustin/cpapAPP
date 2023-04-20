@@ -243,9 +243,6 @@ createTable(objectifiedDateRange);
 
 // look through all cells, then all bootstrap classes for light + center
 const cells = document.querySelectorAll('td')
-const correctTableValues = (e) => {
-    e.forEach(element => {
-        element.classList.add('text-light', 'text-center')
-    })
-}
-correctTableValues(cells);
+cells.forEach((cell) => {
+    cell.classList.add('text-light', 'text-center')
+})

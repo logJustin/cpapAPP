@@ -84,8 +84,10 @@ for (yearMonth in result) {
     // create object for total sceonds used in month
     month.totalSeconds = (month.yearMonth).reduce((total, next) => total + next.secUsed, 0)
 
-    const overFourNights = (month.yearMonth).filter(obj => Number(obj.secUsed) > 14400);
-    month.overFour = overFourNights.length
+    const overFiveNights = (month.yearMonth).filter(obj => Number(obj.secUsed) > 18000);
+    month.overFive = overFiveNights.length
+    const underFive = (month.yearMonth).filter(obj => Number(obj.secUsed) < 18000);
+    month.underFive = underFive.length
 
     // create object key for amount of nights null
     const nullNights = (month.yearMonth).filter(obj => obj.secUsed == null)
@@ -125,8 +127,9 @@ for (yearMonth in result) {
     if (isNaN(month.p95Pressure)) { month.p95Pressure = 0 }
 
 }
-
-
+// for (yearMonth in result) {
+//     console.log(result[yearMonth].name, 'Over', result[yearMonth].overFive, 'Under', result[yearMonth].underFive, 'Missed', result[yearMonth].missedNights)
+// }
 
 
 // generate an object for the total duration, breaths, and days missed
@@ -186,51 +189,69 @@ let hoursUsed = new Chart(durationChart, {
     options: { pointStyle: true, responsive: true }
 });
 
-let polarChart = document.querySelector("#polarchart").getContext('2d');
-let polar = new Chart(polarChart, {
-    type: 'radar',
+// let polarChart = document.querySelector("#polarchart").getContext('2d');
+// let polar = new Chart(polarChart, {
+//     type: 'radar',
+//     data: {
+//         labels: result.map(e => e.name),
+//         datasets: [
+//             {
+
+//                 label: 'Average Hours',
+//                 data: result.map(e => e.averageHours),
+//                 fill: true,
+//                 borderWidth: 1,
+//                 backgroundColor: '#d65a3180',
+//                 borderColor: '#d65a31',
+//                 // order: 1
+//             },
+//             {
+//                 label: 'Nights Used',
+//                 data: result.map(e => e.events),
+//                 borderWidth: 1,
+//                 backgroundColor: '#36A2EB80',
+//                 borderColor: '#36A2EB',
+//                 // order: 2
+//             }
+//         ]
+//     },
+//     options: { responsive: true }
+// });
+
+let overFive = document.querySelector("#overUnderFive").getContext('2d');
+let fiveLine = new Chart(overFive, {
+    type: 'line',
     data: {
         labels: result.map(e => e.name),
-        datasets: [
-            {
-
-                label: 'Average Hours',
-                data: result.map(e => e.averageHours),
-                fill: true,
-                borderWidth: 1,
-                backgroundColor: '#d65a3180',
-                borderColor: '#d65a31',
-                // order: 1
-            },
-            {
-                label: 'Nights Used',
-                data: result.map(e => e.events),
-                borderWidth: 1,
-                backgroundColor: '#36A2EB80',
-                borderColor: '#36A2EB',
-                // order: 2
-            }
-        ]
-    },
-    options: { responsive: true }
-});
-
-let overFour = document.querySelector("#overFour").getContext('2d');
-let fourDoughnut = new Chart(overFour, {
-    type: 'doughnut',
-    data: {
-        labels: ['Over Four Hours', 'Under Four Hours', 'Nights Missed'],
         datasets: [{
-            data: [annualData.overFourDays, annualData.underFourDays, annualData.missedDays],
+            label: 'Under Five',
+            data: result.map(e => e.underFive),
+            fill: true,
             borderWidth: 1,
-            label: 'Nights',
-            backgroundColor: ['#d65a3180', '#36A2EB80', '#ff638480'],
-            borderColor: ['#d65a31', '#36A2EB', '#ff6384'],
-        }]
-    },
-    options: {
-        responsive: true,
-        plugins: { legend: { reverse: true } }
+            backgroundColor: '#d65a3180',
+            borderColor: '#d65a31',
+            order: 3
+        },
+        {
+            label: 'Over Five',
+            data: result.map(e => e.overFive),
+            fill: false,
+            borderWidth: 1,
+            type: 'line',
+            backgroundColor: '#ff638480',
+            borderColor: '#ff6384',
+            order: 2
+        }, {
+            label: 'Nights Missed',
+            data: result.map(e => e.missedNights),
+            fill: true,
+            borderWidth: 1,
+            type: 'line',
+            backgroundColor: '#36A2EB80',
+            borderColor: '#36A2EB',
+            order: 1
+        }
+        ]
     }
 });
 

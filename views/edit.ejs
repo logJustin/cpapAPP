@@ -3,20 +3,26 @@
 <div class="col d-flex flex-column h-sm-100 mainSection mainSectionDark">
   <main class="row overflow-auto">
     <div class="col pt-4">
-      <h1 class="text-light text-center pageHeader">Update: </h1>
-      <h2 class="text-light text-center pageHeader"><%= part.component %></h2>
+      <h1 class="text-light text-center pageHeader">Update Component </h1>
       <div class="container col-lg-6 mt-2 table-responsive-lg d-flex flex-column align-items-center">
 
         <form action="/parts/<%= part._id %>?_method=PUT" method="POST">
 
-          <label class="text-light form-label mt-3" for="component">Name</label>
-          <input class="form-control" type="text" name="component" value="<%= part.component %>">
+          <label class="text-light form-label mt-3" for="component">Select Component</label>
+          <select class="form-select" name="component" id="component">
+            <% components.forEach(item => { %>
+            <option value="<%= item %>" <%= part.component === item ? 'selected':'' %>><%= item %></option>
+            <% }) %>
+          </select>
+
+
+
 
           <label class="text-light form-label mt-3" for="lastChanged">Last Changed</label>
           <input id="lastChanged" class="form-control" type="date" name="lastChanged" value="<%= part.lastChanged %>">
 
-          <label class="text-light form-label mt-3" for="Frequency">Frequency</label>
-          <input id="frequency" class="form-control" type="number" name="Frequency" value="<%= part.frequency %>">
+          <label class="text-light form-label mt-3" for="frequency">Frequency</label>
+          <input id="frequency" class="form-control" type="number" name="frequency" value="<%= part.frequency %>">
 
           <label class="text-light form-label mt-3" for="nextDue">Next Due</label>
           <input id="nextDue" class="form-control" type="date" name="nextDue" value="<%= part.nextDue %>" readonly>
@@ -32,5 +38,16 @@
 
 
 
+
+  <script>
+    const componentSelect = document.getElementById('component')
+    componentSelect.addEventListener('change', (event) => {
+      const component = data.filter(part => part.component === componentSelect.value)[0]
+
+      document.getElementById('lastChanged').value = component.lastChanged
+      document.getElementById('frequency').value = component.frequency
+      document.getElementById('nextDue').value = component.nextDue
+    })
+  </script>
   <script src="/js/edit.js"></script>
   <%- include('partials/footer') %>

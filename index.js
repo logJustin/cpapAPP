@@ -4,7 +4,7 @@ const path = require('path');
 const sqlite3 = require('sqlite3').verbose();
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
-
+const components = ['Cushion', 'Filter', 'Mask', 'Hose', 'Humidity Chamber']
 
 // Connection string and options
 const uri = 'mongodb+srv://reynoldsjustinmichael:FsmTlRpKodjBgQTG@cpap.svikoaw.mongodb.net/CPAPdata';
@@ -53,7 +53,7 @@ app.get('/parts/:id/edit', async (req, res) => {
         const { id } = req.params;
         const dbData = await schemas.Parts.find({});
         const part = await schemas.Parts.findById(id);
-        res.render('edit', { part, dbData });
+        res.render('edit', { part, dbData, components });
     } catch (error) {
         console.error(error);
         res.status(500).send('Internal Server Error');
