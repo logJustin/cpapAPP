@@ -35,7 +35,9 @@
 
 **Problem:** Users of CPAP machines without a wifi integration are unable to easily access their therapy data. 
 
-**Solution:** This web application empowers persons diagnosed with Obstructive Sleep Apnea to monitor their therapy without needing to physically visit a doctor, sleep clinic, or medical supply store. Providing a range of short and long-term data, users can observe and detect trends within their therapy: increases in pressure, the Apnea-Hypopnea Indexes (AHI), and duration of therapy. Using Chart.js, their data is presented in an easy to interpret format. Additionaly, raw data is presented in a table format. Finally, patients can read and update when the components of their CPAP machines are replaced. 
+**Solution:** This web application empowers persons diagnosed with Obstructive Sleep Apnea to monitor their therapy without needing to physically visit a doctor, sleep clinic, or medical supply store. 
+
+Providing a range of short and long-term data, users can observe and detect trends within their therapy: increases in pressure, the Apnea-Hypopnea Indexes (AHI), and duration of therapy. Using Chart.js, their data is presented in an easy to interpret format. Additionally, raw data is presented in a table format. Finally, patients can read and update when the components of their CPAP machines are replaced. 
 
 <p align="right">(<a href="#cpap-app">back to top</a>)</p>
 
@@ -76,7 +78,7 @@ Both Dashboards provide a summary of therapy for the last 14 and 30 days respect
 ### Database
 ![image](https://user-images.githubusercontent.com/33402995/233786340-5bdce439-f857-4114-8a96-4998ae7fa1fa.png)
 
-The Database page provides a table for the user to view the history of their therapy that looks as great on a desktop as it does on a mobile.
+The Database page provides a table for the user to view the history of their therapy that looks as great on desktop as it does mobile.
 
 
 <p align="right">(<a href="#cpap-app">back to top</a>)</p>
@@ -87,7 +89,7 @@ The Database page provides a table for the user to view the history of their the
 ![image](https://user-images.githubusercontent.com/33402995/233786502-2cc632a9-f734-4e4c-acab-3659b3429621.png)
 
 
-The Parts Lifecycle page provides the ability to view, then update the components on their machine. Users select the part, and can update the last time a part was changed. When selecting a new part on the edit page, the information automatically imports into the form. Although I would have wanted to display full CRUD capabilities, I don't see the real world applicability for users to create or delete parts from the database.
+The Parts Lifecycle page provides the ability to view, then update the components on their machine. Users select the part, and can update the last time a part was changed. When selecting a new part on the edit page, the information automatically imports into the form. Although I would have wanted to develop full CRUD capabilities, I don't see the real world applicability for users to create or delete parts from the database. 
 
 
 <p align="right">(<a href="#cpap-app">back to top</a>)</p>
@@ -95,7 +97,7 @@ The Parts Lifecycle page provides the ability to view, then update the component
 <!-- GETTING STARTED -->
 ## Getting Started
 
-1. Prior to importing their data, users need to transfer the propietary data from their CPAP's SD card via [iMatrix](https://smart-med.com.au/imatrix-software-download-and-installation/ "iMatrix"). 
+1. Prior to importing their data, users need to transfer the proprietary data from their CPAP's SD card via [iMatrix](https://smart-med.com.au/imatrix-software-download-and-installation/ "iMatrix"). 
 2. Following installation, create a Patient Profile, import data, and find the .db file around the following path: 
 ```C:\Users\{yourComputer}\Documents\iMatrix\PATIENT\000001```
 2. After locating the .db file, clone the repository to your machine and install the dependencies via `npm install`. 
@@ -123,7 +125,7 @@ Project Link: [https://github.com/logJustin/cpapAPP](https://github.com/logJusti
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-I want to tuse this space to give special acknowledgement to the course that got me into the world of web development! Big shoutout to Colt Steele and all the work he's put into building and sustaining his digital bootcamp.
+I want to use this space to give special acknowledgement to the course that got me into the world of web development! Big shoutout to Colt Steele and all the work he's put into building and sustaining his digital bootcamp.
 
 * [Colt Steele's Web Development Bootcamp](https://www.udemy.com/user/coltsteele/)
 
