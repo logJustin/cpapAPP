@@ -79,7 +79,7 @@ Both Dashboards provide a summary of therapy for the last 14 and 30 days respect
 The Database page provides a table for the user to view the history of their therapy that looks as great on a desktop as it does on a mobile.
 
 
-<p align="right">(<a href="##cpap-app">back to top</a>)</p>
+<p align="right">(<a href="#cpap-app">back to top</a>)</p>
 
 <!-- Parts -->
 ### Parts Lifecycle
@@ -106,7 +106,7 @@ The Parts Lifecycle page provides the ability to view, then update the component
 7. In your browser, navigate to http://localhost:3000/ and view your CPAP Dashboard
 
 
-<p align="right">(<a href="##cpap-app">back to top</a>)</p>
+<p align="right">(<a href="#cpap-app">back to top</a>)</p>
 
 
 <!-- CONTACT -->
