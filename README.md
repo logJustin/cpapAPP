@@ -24,12 +24,7 @@
     </ul>
     <li>
       <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
@@ -102,101 +97,26 @@ The Parts Lifecycle page provides the ability to view, then update the component
 <!-- GETTING STARTED -->
 ## Getting Started
 
-Prior to importing their data, users need to transfer the propietary data from their CPAP's SD card via [iMatrix](https://smart-med.com.au/imatrix-software-download-and-installation/ "iMatrix")
+1. Prior to importing their data, users need to transfer the propietary data from their CPAP's SD card via [iMatrix](https://smart-med.com.au/imatrix-software-download-and-installation/ "iMatrix"). 
+2. Following installation, create a Patient Profile, import data, and find the .db file around the following path: 
+```C:\Users\{yourComputer}\Documents\iMatrix\PATIENT\000001```
+2. After locating the .db file, clone the repository to your machine and install the dependencies via `npm install`. 
+3. Create a .env file to store your MONGO_USER, MONGO_KEY, and MONGO_SERVER variables, which you will store in the root of your directory. *Don't forget to save your .env file inside a .gitignore file, so you don't upload your Mongo Atlas information to GitHub.* 
+4. In the parser.js file, on line 77, update the .db file location in Line 1.
+5. Execute `node parser.js`, and the data from the .db file will update into your MongoDB Atlas project.
+6. Now you're ready to run `nodemon index.js`!
+7. In your browser, navigate to http://localhost:3000/ and view your CPAP Dashboard
 
-<a href="#[readme-top](https://smart-med.com.au/imatrix-software-download-and-installation/)">iMatrix</a>
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
-### Installation
-
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Justin Reynolds - [LinkedIn](https://www.linkedin.com/in/logjustin/) - Reynolds.JustinMichael@gmail.com
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [https://github.com/logJustin/cpapAPP](https://github.com/logJustin/cpapAPP)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -205,16 +125,10 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
+I want to tuse this space to give special acknowledgement to the course that got me into the world of web development! Big shoutout to Colt Steele and all the work he's put into building and sustaining his digital bootcamp.
 
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
+* [Colt Steele's Web Development Bootcamp](https://www.udemy.com/user/coltsteele/)
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
