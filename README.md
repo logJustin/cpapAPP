@@ -1,9 +1,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="https://user-images.githubusercontent.com/33402995/233778117-610f2f17-6669-4601-8b1d-609693484484.png" alt="Logo" width="80" height="80">
-  </a>
+    <img src="https://user-images.githubusercontent.com/33402995/233778117-610f2f17-6669-4601-8b1d-609693484484.png" alt="Dashboard" width="80" height="80">
+
 
 
   <h1 align="center" style="display: inline-block;">CPAP App</h1>
@@ -18,10 +17,10 @@
     <li><a href="#about-the-project">About The Project</a></li>
     <ul>
     <li><a href="#built-with">Built With</a></li>
-    <li><a href="#about-the-project">Home</a></li>
-    <li><a href="#about-the-project">Fourteen & Thirty Days</a></li>
-    <li><a href="#about-the-project">Database</a></li>
-    <li><a href="#about-the-project">Parts Lifecycle</a></li>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#fourteen-and-thirty-day-dashboards">Fourteen & Thirty Days</a></li>
+    <li><a href="#database">Database</a></li>
+    <li><a href="#parts-lifecycle">Parts Lifecycle</a></li>
     </ul>
     <li>
       <a href="#getting-started">Getting Started</a>
@@ -51,25 +50,61 @@
 
 ### Built With
 
-* [![MongoDB][Mongo.js]][Mongo-url]
-* [![Express.js][Express]][Express-url]
-* [![NodeJS][Node.js]][Node-url]
-* [![Nodemon][Nodemon.js]][Nodemon-url]
-* [![SQLite][SqLite.js]][SqLite-url]
-* [![Chart.js][Chart.js]][Chartjs-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![jQuery][JQuery.com]][JQuery-url]
+
+Front End | Back End | Library
+| :---: | :---: | :---:
+[![Bootstrap][Bootstrap.com]][Bootstrap-url] | [![MongoDB][Mongo.js]][Mongo-url] | [![Chart.js][Chart.js]][Chartjs-url]
+[![jQuery][JQuery.com]][JQuery-url] | [![Express.js][Express]][Express-url] | 
+ &nbsp; | [![NodeJS][Node.js]][Node-url] | 
+ &nbsp; | [![Nodemon][Nodemon.js]][Nodemon-url] | 
+ &nbsp; | [![SQLite][SqLite.js]][SqLite-url] | 
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- HOME -->
+### Home
 
+Home gives patients a view of all uploaded Data. Immediately grabbing attention with a large-format chart showing all therapy data organized by year and month, users can scroll down to view the uses for each associated page selectable in the header. Further below, data is presented to the patient summarizing their total hours of therapy, days used, and charts for pressure & AHI. 
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- FOURTEEN THIRTY -->
+### Fourteen and Thirty Day Dashboards
+![image](https://user-images.githubusercontent.com/33402995/233785723-120e517b-df94-4f5c-9178-7fa60101de29.png)
+
+Both Dashboards provide a summary of therapy for the last 14 and 30 days respectively. Paired with a table of each day's usage, the dashboards provide users with a short-term perspective of their therapy.
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- Database -->
+### Database
+![image](https://user-images.githubusercontent.com/33402995/233786340-5bdce439-f857-4114-8a96-4998ae7fa1fa.png)
+
+The Database page provides a table for the user to view the history of their therapy that looks as great on a desktop as it does on a mobile.
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- Parts -->
+### Parts Lifecycle
+![image](https://user-images.githubusercontent.com/33402995/233786462-a1cc7989-c6fe-4420-8ba2-8c72e4d38920.png)
+![image](https://user-images.githubusercontent.com/33402995/233786502-2cc632a9-f734-4e4c-acab-3659b3429621.png)
+
+
+The Parts Lifecycle page provides the ability to view, then update the components on their machine. Users select the part, and can update the last time a part was changed. When selecting a new part on the edit page, the information automatically imports into the form. Although I would have wanted to display full CRUD capabilities, I don't see the real world applicability for users to create or delete parts from the database.
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+Prior to importing their data, users need to transfer the propietary data from their CPAP's SD card via [iMatrix](https://smart-med.com.au/imatrix-software-download-and-installation/ "iMatrix")
+
+<a href="#[readme-top](https://smart-med.com.au/imatrix-software-download-and-installation/)">iMatrix</a>
 
 ### Prerequisites
 
