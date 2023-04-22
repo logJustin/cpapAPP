@@ -3,8 +3,7 @@
     <img src="https://user-images.githubusercontent.com/33402995/233778117-610f2f17-6669-4601-8b1d-609693484484.png" alt="Dashboard" width="80" height="80">
 
 
-  #CPAP App
-  <h1 align="center" style="display: inline-block;">CPAP App</h1>
+  # CPAP App
   <h3>A Continuous Positive Airway Pressure (CPAP) Web Application</h3>
 </div>
 
