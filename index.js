@@ -4,10 +4,11 @@ const path = require('path');
 const sqlite3 = require('sqlite3').verbose();
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
+const dotenv = require('dotenv').config()
 const components = ['Cushion', 'Filter', 'Mask', 'Hose', 'Humidity Chamber']
 
 // Connection string and options
-const uri = 'mongodb+srv://reynoldsjustinmichael:FsmTlRpKodjBgQTG@cpap.svikoaw.mongodb.net/CPAPdata';
+const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_KEY}@${process.env.MONGO_SERVER}`;
 const options = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
