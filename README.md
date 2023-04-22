@@ -1,11 +1,9 @@
 <!-- PROJECT LOGO -->
-# ReadMe Top
-<br />
 <div align="center">
     <img src="https://user-images.githubusercontent.com/33402995/233778117-610f2f17-6669-4601-8b1d-609693484484.png" alt="Dashboard" width="80" height="80">
 
 
-
+  #CPAP App
   <h1 align="center" style="display: inline-block;">CPAP App</h1>
   <h3>A Continuous Positive Airway Pressure (CPAP) Web Application</h3>
 </div>
@@ -40,7 +38,7 @@
 
 **Solution:** This web application empowers persons diagnosed with Obstructive Sleep Apnea to monitor their therapy without needing to physically visit a doctor, sleep clinic, or medical supply store. Providing a range of short and long-term data, users can observe and detect trends within their therapy: increases in pressure, the Apnea-Hypopnea Indexes (AHI), and duration of therapy. Using Chart.js, their data is presented in an easy to interpret format. Additionaly, raw data is presented in a table format. Finally, patients can read and update when the components of their CPAP machines are replaced. 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#cpap-app">back to top</a>)</p>
 
 
 
@@ -56,7 +54,7 @@ Front End | Back End | Library
  &nbsp; | [![SQLite][SqLite.js]][SqLite-url] | 
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#cpap-app">back to top</a>)</p>
 
 <!-- HOME -->
 ### Home
@@ -64,7 +62,7 @@ Front End | Back End | Library
 Home gives patients a view of all uploaded Data. Immediately grabbing attention with a large-format chart showing all therapy data organized by year and month, users can scroll down to view the uses for each associated page selectable in the header. Further below, data is presented to the patient summarizing their total hours of therapy, days used, and charts for pressure & AHI. 
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#cpap-app">back to top</a>)</p>
 
 <!-- FOURTEEN THIRTY -->
 ### Fourteen and Thirty Day Dashboards
@@ -73,7 +71,7 @@ Home gives patients a view of all uploaded Data. Immediately grabbing attention 
 Both Dashboards provide a summary of therapy for the last 14 and 30 days respectively. Paired with a table of each day's usage, the dashboards provide users with a short-term perspective of their therapy.
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#cpap-app">back to top</a>)</p>
 
 <!-- Database -->
 ### Database
@@ -82,7 +80,7 @@ Both Dashboards provide a summary of therapy for the last 14 and 30 days respect
 The Database page provides a table for the user to view the history of their therapy that looks as great on a desktop as it does on a mobile.
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="##cpap-app">back to top</a>)</p>
 
 <!-- Parts -->
 ### Parts Lifecycle
@@ -93,7 +91,7 @@ The Database page provides a table for the user to view the history of their the
 The Parts Lifecycle page provides the ability to view, then update the components on their machine. Users select the part, and can update the last time a part was changed. When selecting a new part on the edit page, the information automatically imports into the form. Although I would have wanted to display full CRUD capabilities, I don't see the real world applicability for users to create or delete parts from the database.
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#cpap-app">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -109,7 +107,7 @@ The Parts Lifecycle page provides the ability to view, then update the component
 7. In your browser, navigate to http://localhost:3000/ and view your CPAP Dashboard
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="##cpap-app">back to top</a>)</p>
 
 
 <!-- CONTACT -->
@@ -119,7 +117,7 @@ Justin Reynolds - [LinkedIn](https://www.linkedin.com/in/logjustin/) - Reynolds.
 
 Project Link: [https://github.com/logJustin/cpapAPP](https://github.com/logJustin/cpapAPP)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#cpap-app">back to top</a>)</p>
 
 
 
@@ -131,7 +129,7 @@ I want to tuse this space to give special acknowledgement to the course that got
 * [Colt Steele's Web Development Bootcamp](https://www.udemy.com/user/coltsteele/)
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#cpap-app">back to top</a>)</p>
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
