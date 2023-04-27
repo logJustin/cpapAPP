@@ -11,7 +11,7 @@ const createTable = (data) => {
                 <td>${item.frequency} days</td>
                 <td>${item.nextDue}</td>
                 <td>
-                    <a href="http://localhost:3000/parts/${item._id}/edit" class="table-link">
+                    <a href="https://cpap-app.herokuapp.com/parts/${item._id}/edit" class="table-link">
                         <i class="bi-pencil-square"></i>
                     </a>
                 </td>
