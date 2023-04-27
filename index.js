@@ -1,11 +1,11 @@
-require('dotenv').config();
+const dotenv = require('dotenv').config()
+
 const express = require('express');
 const app = express();
 const path = require('path');
 const sqlite3 = require('sqlite3').verbose();
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
-const dotenv = require('dotenv').config()
 const components = ['Cushion', 'Filter', 'Mask', 'Hose', 'Humidity Chamber']
 
 
