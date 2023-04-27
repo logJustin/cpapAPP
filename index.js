@@ -7,6 +7,10 @@ const methodOverride = require('method-override');
 const dotenv = require('dotenv').config()
 const components = ['Cushion', 'Filter', 'Mask', 'Hose', 'Humidity Chamber']
 
+if (process.env.NODE_ENV !== "production") {
+    require("dotenv").config();
+}
+
 // Connection string and options
 const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_KEY}@${process.env.MONGO_SERVER}`;
 const options = {
@@ -80,8 +84,7 @@ app.put('/parts/:id', async (req, res) => {
 
 
 
-let port = process.env.PORT;
-if (port == null || port == "") {
-    port = 3000;
-}
-app.listen(process.env.PORT, () => { console.log('Listening!') });
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
