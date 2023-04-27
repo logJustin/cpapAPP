@@ -7,6 +7,8 @@ const methodOverride = require('method-override');
 const dotenv = require('dotenv').config()
 const components = ['Cushion', 'Filter', 'Mask', 'Hose', 'Humidity Chamber']
 
+require('dotenv').config();
+
 if (process.env.NODE_ENV !== "production") {
     require("dotenv").config();
 }
