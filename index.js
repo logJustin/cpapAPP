@@ -80,5 +80,8 @@ app.put('/parts/:id', async (req, res) => {
 
 
 
-
-app.listen(3000, () => { console.log('On port 3000') });
+let port = process.env.PORT;
+if (port == null || port == "") {
+    port = 3000;
+}
+app.listen(process.env.PORT, () => { console.log('Listening!') });

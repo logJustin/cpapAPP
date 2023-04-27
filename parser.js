@@ -83,7 +83,7 @@ const migrateData = async () => {
 
                     try {
                         // Connect to the MongoDB database
-                        await mongoose.connect('mongodb+srv://reynoldsjustinmichael:FsmTlRpKodjBgQTG@cpap.svikoaw.mongodb.net/CPAPdata', {
+                        await mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_KEY}@${process.env.MONGO_SERVER}`, {
                             useNewUrlParser: true,
                             useUnifiedTopology: true,
                         });
