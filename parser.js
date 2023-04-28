@@ -1,3 +1,5 @@
+const dotenv = require('dotenv').config()
+
 const express = require('express');
 // Used to take the db file from a sql format into mongodb
 // run node parser.js in the terminal to migrate the local .db file
