@@ -8,7 +8,6 @@ toggle.addEventListener('change', function () {
         let lightText = document.querySelectorAll('.text-light')
         let lightBtn = document.querySelectorAll('.btn-light')
         let menu = document.querySelectorAll('.dropdown-menu')
-        console.log(menu[0])
         mainSection.classList.toggle('mainSectionDark');
 
         [...lightText].forEach(x => {
