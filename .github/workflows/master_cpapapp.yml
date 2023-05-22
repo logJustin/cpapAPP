@@ -32,7 +32,12 @@ jobs:
         with:
           name: node-app
           path: |
-            ! ./node_modules
+            models
+            public
+            views
+            index.js
+            package.json
+            package-lock.json
 
   deploy:
     runs-on: ubuntu-latest
