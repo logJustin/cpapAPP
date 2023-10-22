@@ -76,7 +76,7 @@ const migrateData = async () => {
     try {
         // Connect to the SQLite database
         const db = new sqlite3.Database(
-            'C:/Users/reyno/Documents/iMatrix/PATIENT/000001/000001_patient.db',
+            'C:/Users/reyno/OneDrive/Documents/iMatrix/PATIENT/000001/000001_patient.db',
             async (err) => {
                 if (err) {
                     console.error(err.message);
