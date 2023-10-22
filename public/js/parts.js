@@ -1,5 +1,16 @@
 const tableBody = document.querySelector('tbody');
 
+// Sort the data array by the 'nextDue' property
+const sortedData = (data) => {
+    // convert each nextDue to a date in a new variable
+    data.forEach((item, index) => {
+        item.formattedDate = new Date(item.nextDue)
+    })
+    // compare & sort
+    data.sort((a, b) => a.formattedDate - b.formattedDate);
+}
+sortedData(data)
+
 const createTable = (data) => {
     // Using Array.prototype.forEach instead of a for...in loop
     data.forEach((item) => {
@@ -21,6 +32,7 @@ const createTable = (data) => {
     });
 };
 
+// Call createTable after sorting
 createTable(data);
 
 const cells = document.querySelectorAll('td');

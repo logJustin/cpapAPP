@@ -1,51 +1,58 @@
 // declare variables
-const toggle = document.querySelector('#flexSwitchCheckDefault')
-const mainSection = document.querySelector('.mainSection')
-// toggler logic to switch between light and dark mode
-toggle.addEventListener('change', function () {
-    if (toggle.checked) {
-        let lightIcons = document.querySelectorAll('.initialIcons')
-        let lightText = document.querySelectorAll('.text-light')
-        let lightBtn = document.querySelectorAll('.btn-light')
-        let menu = document.querySelectorAll('.dropdown-menu')
-        mainSection.classList.toggle('mainSectionDark');
+const toggle = document.querySelector('#flexSwitchCheckDefault');
+const mainSection = document.querySelector('.mainSection');
 
-        [...lightText].forEach(x => {
-            x.classList.add('text-dark');
-            x.classList.remove('text-light');
-        });
-        [...lightIcons].forEach(x => {
-            x.classList.add('initialIconsDark');
-            x.classList.remove('initialIcons');
-        });
-        [...lightBtn].forEach(x => {
-            x.classList.add('btn-dark');
-            x.classList.remove('btn-light');
-        });
-        menu[0].classList.add('dropdown-menu-light')
-        menu[0].classList.remove('dropdown-menu-dark')
+// Function to toggle between light and dark mode
+function toggleMode(isDarkMode) {
+    let textElements, iconElements, buttonElements, menu;
 
+    if (isDarkMode) {
+        textElements = document.querySelectorAll('.text-dark');
+        iconElements = document.querySelectorAll('.initialIconsDark');
+        buttonElements = document.querySelectorAll('.btn-dark');
+        menu = document.querySelector('.dropdown-menu');
+
+        mainSection.classList.add('mainSectionDark');
+        menu.classList.add('dropdown-menu-dark');
+        menu.classList.remove('dropdown-menu-light');
     } else {
-        let darkText = document.querySelectorAll('.text-dark')
-        let darkIcons = document.querySelectorAll('.initialIconsDark')
-        let darkBtn = document.querySelectorAll('.btn-dark')
-        let menu = document.querySelectorAll('.dropdown-menu')
-        mainSection.classList.toggle('mainSectionDark');
+        textElements = document.querySelectorAll('.text-light');
+        iconElements = document.querySelectorAll('.initialIcons');
+        buttonElements = document.querySelectorAll('.btn-light');
+        menu = document.querySelector('.dropdown-menu');
 
-        [...darkText].forEach(x => {
-            x.classList.add('text-light');
-            x.classList.remove('text-dark');
-        });
-        [...darkIcons].forEach(x => {
-            x.classList.add('initialIcons');
-            x.classList.remove('initialIconsDark');
-        });
-        [...darkBtn].forEach(x => {
-            x.classList.add('btn-light');
-            x.classList.remove('btn-dark');
-        });
-        menu[0].classList.add('dropdown-menu-dark')
-        menu[0].classList.remove('dropdown-menu-light')
-
+        mainSection.classList.remove('mainSectionDark');
+        menu.classList.add('dropdown-menu-light');
+        menu.classList.remove('dropdown-menu-dark');
     }
-})
+
+    textElements.forEach(x => {
+        x.classList.add(isDarkMode ? 'text-light' : 'text-dark');
+        x.classList.remove(isDarkMode ? 'text-dark' : 'text-light');
+    });
+
+    iconElements.forEach(x => {
+        x.classList.add(isDarkMode ? 'initialIcons' : 'initialIconsDark');
+        x.classList.remove(isDarkMode ? 'initialIconsDark' : 'initialIcons');
+    });
+
+    buttonElements.forEach(x => {
+        x.classList.add(isDarkMode ? 'btn-light' : 'btn-dark');
+        x.classList.remove(isDarkMode ? 'btn-dark' : 'btn-light');
+    });
+}
+
+// Check local storage for darkMode value or default to true (dark mode)
+const isDarkMode = localStorage.getItem('darkMode') !== 'false';
+
+// Set the checked attribute of the toggle based on isDarkMode
+toggle.checked = isDarkMode;
+
+// Initialize the mode
+toggleMode(isDarkMode);
+
+// Add event listener to toggle mode
+toggle.addEventListener('change', function () {
+    toggleMode(toggle.checked);
+    localStorage.setItem('darkMode', toggle.checked ? 'true' : 'false');
+});
